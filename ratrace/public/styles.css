@@ -1,0 +1,113 @@
+.navbar{
+  border-radius: 0;
+/*  margin-bottom: 5px;*/
+}
+
+.navbar-header{
+  float: left;
+}
+
+.navbar-brand{
+  padding: 9px;
+}
+
+.navbar-brand>img{
+  display: inline-block;
+}
+
+.navbar-nav{
+  margin: 0;
+  float: right;
+}
+
+.profile-picture{
+  margin-right: 6px;
+}
+
+.account-balance{
+  font-size: 36px;
+}
+
+.keypad .row .cell:first-child{
+  padding-left: 0;
+}
+
+.keypad .row .cell:last-child{
+  padding-right: 0;
+}
+
+.keypad .cell{
+  padding: 3px;
+  float: left;
+  position: relative;
+
+  width: calc(100% / 3);
+}
+
+.keypad button{
+  width: 100%;
+  font-size: 150%;
+}
+
+.user-list{
+/*  height: 100%;
+  overflow-y: auto: */
+
+  margin-bottom: 12px;
+}
+
+.user-list .user{
+  margin-top: 2px;
+}
+
+.user-list .user img{
+  width: 32px;
+  height: 32px;
+}
+
+.user-list.nav-tabs{
+  border-bottom: 1px solid #337AB7;
+}
+
+.user-list.nav-tabs>li>a{
+  padding: 6px;
+}
+
+.user-list.nav-tabs>li:hover>a{
+  border-bottom: 1px solid #337AB7;
+}
+
+.user-list.nav-tabs>li.active>a{
+  padding: 6px;
+  color: #FFF;
+  background-color: #337AB7;
+  border-color: #337AB7;
+
+  background-image: radial-gradient(ellipse farthest-corner at center bottom, #337AB7 30%, #5EC9FF 200%);
+
+}
+
+
+@media (min-width: 768px){
+  .user-list.nav-tabs{
+    border-bottom: 0;
+    /*border-right: 1px solid #337AB7;*/
+  }
+
+  .user-list.nav-tabs>li:hover>a{
+    border-bottom: 1px solid #EEE;
+  }
+
+  .user-list.nav-tabs>li.active:hover>a{
+    border-bottom: 1px solid #337AB7;
+  }
+
+  .user-list.nav-tabs>li{
+    float: none;
+    display: block;
+  }
+
+  .user-list.nav-tabs>li>a{
+    border-radius: 4px;
+  }
+}

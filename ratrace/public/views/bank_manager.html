@@ -1,0 +1,53 @@
+<div class="row">
+
+  <div class="col-sm-3">
+
+    <ul class="nav nav-tabs user-list">
+      <li role="presentation" ng-repeat="user in users" class="user"
+        ng-class="{active : user == selectedUser }">
+
+        <a href="" ng-click="setSelectedUser(user.id)" fb-profile fbid="user.fbid"></a>
+
+      </li>
+    </ul>
+
+  </div>
+
+  <div class="col-sm-9">
+
+  <form class="form">
+
+    <fieldset>
+
+      <div class="form-group">
+        <div class="input-group">
+
+          <div class="input-group-addon">$</div>
+
+          <label class="form-control input-lg text-right">{{ currentPayment | currency: '': 0 }}</label>
+
+          <!-- <div class="input-group-addon">.00</div> -->
+        </div>
+      </div>
+
+      <div class="form-group">
+        <keypad ng-model="currentPayment"></keypad>
+      </div>
+
+      <div class="form-group">
+        <button type="button" ng-click="payTo(selectedUser, currentPayment)" class="btn btn-lg btn-warning btn-block">Pay</button>
+      </div>
+
+    </fieldset>
+
+    <fieldset>
+
+      <br /><br />
+      <div class="form-group">
+        <button type="button" ng-click="reset()" class="btn btn-lg btn-danger btn-block">Reset Game</button>
+      </div>
+    </fieldset>
+
+  </form>
+
+</div>
