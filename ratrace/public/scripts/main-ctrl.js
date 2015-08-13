@@ -12,6 +12,18 @@ void function(ng, $, Parse, app){
       scope.loginState = 'unknown';
       scope.fbid = null;
 
+      
+      scope._loading = false;
+
+      scope.loading = function(is_loading){
+
+        if(typeof is_loading != 'undefined'){
+          scope._loading = is_loading; 
+        }
+
+        return scope._loading;
+      };
+
       rootScope.setTitle = function(title){
         scope.title = title;
       };

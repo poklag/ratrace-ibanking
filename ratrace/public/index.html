@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="/styles.css" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -52,8 +51,9 @@
 
             <div ng-if="loginState == 'connecting' || loginState == 'unknown' ">
               <button class="btn btn-default navbar-btn" id="fb-login" ng-click="login()" ng-disable="loginState == 'connecting'">
-                <span ng-if="loginState == 'connecting'"><i class="fa fa-circle-o-notch fa-spin"></i> Loging in...</span>
-                <span ng-if="loginState == 'unknown'">Login using Facebook</span>
+                <span ng-if="loginState == 'connecting'"><i class="glyphicon glyphicon-cog gly-spin"></i> Loging in...</span>
+                <span ng-if="loginState == 'unknown'">
+                Login using Facebook</span>
               </button>
             </div>
 
