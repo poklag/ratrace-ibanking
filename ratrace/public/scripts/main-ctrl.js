@@ -14,11 +14,12 @@ void function(ng, $, Parse, app){
 
       
       scope._loading = false;
+      scope.loading_thing = null;
 
       scope.loading = function(is_loading){
 
         if(typeof is_loading != 'undefined'){
-          scope._loading = is_loading; 
+          scope._loading = is_loading;
         }
 
         return scope._loading;

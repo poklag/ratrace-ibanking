@@ -6,10 +6,37 @@
       <li role="presentation" ng-repeat="user in users" class="user"
         ng-class="{active : user == selectedUser }">
 
-        <a href="" ng-click="setSelectedUser(user.id)" fb-profile fbid="user.fbid"></a>
+        <a href="javascript: void(0)" ng-click="setSelectedUser(user.id)" fb-profile fbid="user.fbid"></a>
 
       </li>
     </ul>
+
+    <div class="modal fade" id="selectPlayerModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="modalTitle">Select player to transfer to</h4>
+          </div>
+          <div class="modal-body">
+            <ul class="nav nav-tabs user-list">
+              <li role="presentation" ng-repeat="user in users" class="user"
+                ng-class="{active : user == selectedUser }">
+
+                <a href="javascript: void(0)" ng-click="setSelectedUser(user.id)" fb-profile fbid="user.fbid"></a>
+
+              </li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click="payTo(selectedUser, currentPayment)">Transfer</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </div>
 
@@ -17,16 +44,23 @@
 
   <form class="form">
 
-    <fieldset>
+    <fieldset ng-disabled="loading()">
 
       <div class="form-group">
         <div class="input-group">
 
           <div class="input-group-addon">$</div>
 
-          <label class="form-control input-lg text-right">{{ currentPayment | currency: '': 0 }}</label>
+          <label class="form-control input-lg text-right">
+            {{ currentPayment | currency: '': 0 }}
+          </label>
 
-          <!-- <div class="input-group-addon">.00</div> -->
+          <div class="input-group-btn btn-backspace">
+            <div class="btn btn-lg btn-danger" ng-click="backspace()">
+              <i class="glyphicon glyphicon-arrow-left"></i>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -35,7 +69,10 @@
       </div>
 
       <div class="form-group">
-        <button type="button" ng-click="payTo(selectedUser, currentPayment)" class="btn btn-lg btn-warning btn-block">Pay</button>
+        <button type="button" ng-click="payTo(selectedUser, currentPayment)" class="btn btn-lg btn-warning btn-block">
+          <i class="glyphicon glyphicon-cog gly-spin" ng-show="loading()"></i>
+          Transfer
+        </button>
       </div>
 
     </fieldset>
@@ -44,7 +81,10 @@
 
       <br /><br />
       <div class="form-group">
-        <button type="button" ng-click="reset()" class="btn btn-lg btn-danger btn-block">Reset Game</button>
+        <button type="button" ng-click="reset()" class="btn btn-lg btn-danger btn-block">
+          <i class="glyphicon glyphicon-cog gly-spin" ng-show="loading()"></i>
+          Reset Game
+        </button>
       </div>
     </fieldset>
 

@@ -31,6 +31,21 @@ void function(ng, $, Parse, app){
     }
   ]);
 
+  app.factory('BSModalService', [
+    '$q',
+    '$window',
+    '$timeout',
+
+    function BSModalService(q, window, timeout){
+
+      return {
+        show: function(target){
+          $(target).modal('show');
+        }
+      };
+    }
+  ]);
+
   app.factory('MyAccountService', [
 
     '$q',
@@ -99,8 +114,9 @@ void function(ng, $, Parse, app){
   app.factory('BankAccountService', [
 
     '$q',
+    '$timeout',
 
-    function BankAccountService(q){
+    function BankAccountService(q, timeout){
       return {
 
         getAllAccount: function(){
@@ -126,25 +142,28 @@ void function(ng, $, Parse, app){
 
           if(amount != 0){
 
-            var CurrentItem = Parse.Object.extend('CurrentItem');
 
-            var item = new CurrentItem();
-            var user = new Parse.User();
-            var amount = amount;
+            timeout(function(){
+              var CurrentItem = Parse.Object.extend('CurrentItem');
 
-            user.set('id', userId);
+              var item = new CurrentItem();
+              var user = new Parse.User();
+              var amount = amount;
 
-            item.set('account', user);
-            item.set('amount', amount);
+              user.set('id', userId);
 
-            item.save(null, {
-              success: function(item){
-                deferred.resolve(item);
-              },
-              error: function(err){
-                deferred.reject(err);
-              }
-            });
+              item.set('account', user);
+              item.set('amount', amount);
+
+              item.save(null, {
+                success: function(item){
+                  deferred.resolve(item);
+                },
+                error: function(err){
+                  deferred.reject(err);
+                }
+              });
+            }, 2000);
 
           }else{
             deferred.reject("Amount should not be zero");

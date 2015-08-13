@@ -24,11 +24,28 @@ void function(ng, $, Parse, app){
       };
 
       scope.currentPayment = 0;
+
       scope.setCurrentPayment = function(value){
         scope.currentPayment = value;
       };
 
+      scope.backspace = function(){
+        if(scope.currentPayment !== 0){
+          var val = scope.currentPayment;
+
+          val = val.toString().slice(0, -1);
+
+          if(val == ''){
+            scope.currentPayment = 0;
+          }else{
+            scope.currentPayment = parseInt(val);
+          }
+        }
+      };
+
       scope.pay = function(){
+
+        scope.loading(true);
 
         if(isFirstPlay && chaChingSound){
           isFirstPlay = false;
@@ -54,10 +71,16 @@ void function(ng, $, Parse, app){
         })
         .catch(function(err){
 
-          alert(err.message);
+          // if(err.message){
+          //   alert(err.message);
+          // }else{
+          //   alert(err);
+          // }
 
           console.log('Payment error');
         }).finally(function(){
+
+          scope.loading(false);
 
           if(!updateAccountBalanceHandler){
             updateAccountBalanceHandler = timeout(function(){

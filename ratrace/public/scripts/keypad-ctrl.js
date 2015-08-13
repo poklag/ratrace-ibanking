@@ -15,8 +15,6 @@ void function(ng, $, Parse, app){
 
           scope.clear = function(){
             scope.value = '0';
-
-            //scope.setCurrentPayment(value);
           };
 
           scope.pressNum = function(num){
