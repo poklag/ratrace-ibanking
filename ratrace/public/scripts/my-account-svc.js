@@ -34,34 +34,39 @@ void function(ng, $, Parse, app){
   app.factory('MyAccountService', [
 
     '$q',
+    '$timeout',
 
-    function MyAccountService(Q){
+    function MyAccountService(Q, timeout){
 
       return {
 
         makePayment: function(amount){
 
-          if(amount == 0){
-            return;
-          }
-
           var d = Q.defer();
 
-          var user = Parse.User.current();
+          timeout(function(){
 
-          if(user){
+            if(amount == 0){
+              d.reject('Amount must be non-zero');
+            }
 
-            Parse.Cloud.run('makePayment', { userId: user.id, amount: amount }, {
-              success: function(balance) {
-                d.resolve(balance);
-              },
-              error: function(error) {
-                d.reject(error);
-              }
-            });
-          }else{
-            d.reject("User must login first");
-          }
+            var user = Parse.User.current();
+
+            if(user){
+
+              Parse.Cloud.run('makePayment', { userId: user.id, amount: amount }, {
+                success: function(balance) {
+                  d.resolve(balance);
+                },
+                error: function(error) {
+                  d.reject(error);
+                }
+              });
+            }else{
+              d.reject("User must login first");
+            }
+
+          });
 
           return d.promise;
         },
