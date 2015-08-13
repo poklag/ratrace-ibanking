@@ -19,6 +19,11 @@ void function(ng, $, Parse, app){
       scope.selectedUser = null;
       scope.loading(true);
 
+      if(rootScope.updateAccountBalanceHandler){
+        console.log('Clear timeout');
+        timeout.cancel(rootScope.updateAccountBalanceHandler);
+      }
+
       BankAccountService.getAllAccount()
         .then(function(users){
 

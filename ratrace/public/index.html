@@ -32,38 +32,42 @@
   <body ng-controller="MainCtrl">
 
     <nav class="navbar navbar-default">
-      <div class="container-fluid">
+      <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">
-            
-            <img class="profile-picture" ng-if="loginState == 'connected'" ng-src="//graph.facebook.com/{{ fbid }}/picture?width=32&height=32" />
 
-            iBanking
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu" aria-expanded="false">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a class="navbar-brand" href="#/">
+            <img class="profile-picture" ng-src="//graph.facebook.com/{{ fbid }}/picture?width=32&height=32" />
+
+            <span>{{ title }}</span>
           </a>
 
         </div>
+        <div class="collapse navbar-collapse" id="main-menu">
 
-        <!-- <p class="navbar-text">{{ title }}</p> -->
+          <ul class="nav navbar-nav navbar-right">
+            <li data-toggle="collapse" data-target="#main-menu" ng-class="{active: title == 'My Account'}"><a href="#/">My Account</a></li>
+            <li data-toggle="collapse" data-target="#main-menu" ng-class="{active: title == 'Bank Manager'}"><a href="#/bank">Bank Manager</a></li>
+          </ul>
 
-        <div class="">
-
-          <div class="nav navbar-nav navbar-right">
-
-            <div ng-if="loginState == 'connecting' || loginState == 'unknown' ">
-              <button class="btn btn-default navbar-btn" id="fb-login" ng-click="login()" ng-disable="loginState == 'connecting'">
-                <span ng-if="loginState == 'connecting'"><i class="glyphicon glyphicon-cog gly-spin"></i> Loging in...</span>
-                <span ng-if="loginState == 'unknown'">
-                Login using Facebook</span>
-              </button>
-            </div>
-
-            <div ng-if="loginState == 'connected'">
-              <button class="btn btn-default navbar-btn" ng-click="logout()">Logout</button>
-            </div>
-
-            <div ng-if="loginState == 'error'">Error loging in</div>
-
+          <div ng-if="loginState == 'connecting' || loginState == 'unknown' ">
+            <button class="btn btn-default navbar-btn" id="fb-login" ng-click="login()" ng-disable="loginState == 'connecting'">
+              <span ng-if="loginState == 'connecting'"><i class="glyphicon glyphicon-cog gly-spin"></i> Loging in...</span>
+              <span ng-if="loginState == 'unknown'">
+              Login using Facebook</span>
+            </button>
           </div>
+
+          <div ng-if="loginState == 'connected'">
+            <button class="btn btn-default navbar-btn" ng-click="logout()">Logout</button>
+          </div>
+
+          <div ng-if="loginState == 'error'" class="navbar-text">Error loging in</div>
 
         </div>
 

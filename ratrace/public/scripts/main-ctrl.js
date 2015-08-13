@@ -10,9 +10,9 @@ void function(ng, $, Parse, app){
 
       scope.title = '';
       scope.loginState = 'unknown';
-      scope.fbid = null;
+      scope.fbid = 2; // This is somehow the default profile picture
 
-      
+
       scope._loading = false;
       scope.loading_thing = null;
 
@@ -41,6 +41,8 @@ void function(ng, $, Parse, app){
         .then(function(response){
           scope.loginState = 'connected';
           scope.fbid = response.authResponse.userID;
+
+          facebook.updateUserName(scope.fbid);
         })
         .catch(function(reason){
 
@@ -67,6 +69,7 @@ void function(ng, $, Parse, app){
             timeout(function(){
               scope.fbid = user.get('authData').facebook.id;
               scope.loginState = 'connected';
+              facebook.updateUserName(scope.fbid);
             });
 
             if (!user.existed()) {

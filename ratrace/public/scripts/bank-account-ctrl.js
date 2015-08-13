@@ -82,10 +82,10 @@ void function(ng, $, Parse, app){
 
           scope.loading(false);
 
-          if(!updateAccountBalanceHandler){
-            updateAccountBalanceHandler = timeout(function(){
+          if(!rootScope.updateAccountBalanceHandler){
+            rootScope.updateAccountBalanceHandler = timeout(function(){
 
-              updateAccountBalanceHandler = null;
+              rootScope.updateAccountBalanceHandler = null;
               scope.updateAccountBalance();
             }, 2500)
           }
@@ -93,8 +93,6 @@ void function(ng, $, Parse, app){
         });
       };
 
-
-      var updateAccountBalanceHandler = null;
       scope.updateAccountBalance = function(){
 
         myAccountService.getBalance().then(function(b){
@@ -110,10 +108,10 @@ void function(ng, $, Parse, app){
 
         }).finally(function(){
 
-          if(!updateAccountBalanceHandler){
-            updateAccountBalanceHandler = timeout(function(){
+          if(!rootScope.updateAccountBalanceHandler){
+            rootScope.updateAccountBalanceHandler = timeout(function(){
 
-              updateAccountBalanceHandler = null;
+              rootScope.updateAccountBalanceHandler = null;
               scope.updateAccountBalance();
             }, 2500)
           }

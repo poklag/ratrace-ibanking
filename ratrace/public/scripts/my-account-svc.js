@@ -1,36 +1,4 @@
 void function(ng, $, Parse, app){
-
-  app.directive('fbProfile', [
-    '$timeout',
-
-    function(timeout){
-      return {
-        template: '<img ng-src="//graph.facebook.com/{{ fbid }}/picture?width=64&height=64" class="img-round" />'
-          +' <span class="small hidden-xs">{{ name }}</span>',
-
-        scope: {
-          fbid: '='
-        },
-        link: function(scope, element, attrs){
-
-          scope.name = "..."
-
-          FB.api('/' + scope.fbid, function(response) {
-              if (!response || response.error) {
-                console.log(response);
-              } else {
-
-                timeout(function(){
-                  scope.name = response.name;
-                });
-              }
-            }
-          );
-        }
-      };
-    }
-  ]);
-
   app.factory('BSModalService', [
     '$q',
     '$window',
@@ -142,28 +110,24 @@ void function(ng, $, Parse, app){
 
           if(amount != 0){
 
+            var CurrentItem = Parse.Object.extend('CurrentItem');
 
-            timeout(function(){
-              var CurrentItem = Parse.Object.extend('CurrentItem');
+            var item = new CurrentItem();
+            var user = new Parse.User();
 
-              var item = new CurrentItem();
-              var user = new Parse.User();
-              var amount = amount;
+            user.set('id', userId);
 
-              user.set('id', userId);
+            item.set('account', user);
+            item.set('amount', amount);
 
-              item.set('account', user);
-              item.set('amount', amount);
-
-              item.save(null, {
-                success: function(item){
-                  deferred.resolve(item);
-                },
-                error: function(err){
-                  deferred.reject(err);
-                }
-              });
-            }, 2000);
+            item.save(null, {
+              success: function(item){
+                deferred.resolve(item);
+              },
+              error: function(err){
+                deferred.reject(err);
+              }
+            });
 
           }else{
             deferred.reject("Amount should not be zero");

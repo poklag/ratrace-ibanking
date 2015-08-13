@@ -40,6 +40,35 @@ void function(ng, $, Parse, app){
           return deferred.promise;
         },
 
+        updateUserName: function(fbid){
+
+          var user = Parse.User.current();
+
+          if(user){
+            FB.api('/' + fbid, function(response) {
+                if (!response || response.error) {
+                  console.log(response);
+                } else {
+                  user.set('name', response.name);
+                  user.save(null, {
+                    success: function(user){
+                      
+                    },
+
+                    error: function(error){
+                      console.error(error);
+                    }
+
+                  });
+                }
+              }
+            );
+          }else{
+            console.error("Failed to update user name");
+          }
+
+        },
+
         getMyLastName: function() {
           var deferred = $q.defer();
           FB.api('/me', {

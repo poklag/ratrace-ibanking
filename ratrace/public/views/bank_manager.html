@@ -6,7 +6,10 @@
       <li role="presentation" ng-repeat="user in users" class="user"
         ng-class="{active : user == selectedUser }">
 
-        <a href="javascript: void(0)" ng-click="setSelectedUser(user.id)" fb-profile fbid="user.fbid"></a>
+        <a href="javascript: void(0)" ng-click="setSelectedUser(user.id)">
+          <img ng-src="//graph.facebook.com/{{ user.fbid }}/picture?width=64&height=64" class="img-round" />
+          <span class="small hidden-xs">{{ user.name }}</span>
+        </a>
 
       </li>
     </ul>
@@ -25,7 +28,10 @@
               <li role="presentation" ng-repeat="user in users" class="user"
                 ng-class="{active : user == selectedUser }">
 
-                <a href="javascript: void(0)" ng-click="setSelectedUser(user.id)" fb-profile fbid="user.fbid"></a>
+                <a href="javascript: void(0)" ng-click="setSelectedUser(user.id)">
+                  <img ng-src="//graph.facebook.com/{{ user.fbid }}/picture?width=64&height=64" class="img-round" />
+                  <span class="small">{{ user.name }}</span>
+                </a>
 
               </li>
             </ul>

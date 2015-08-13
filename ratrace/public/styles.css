@@ -35,22 +35,26 @@
   border-radius: 0;
 /*  margin-bottom: 5px;*/
 }
-
+/*
 .navbar-header{
   float: left;
 }
 
-.navbar-brand{
-  padding: 9px;
-}
 
-.navbar-brand>img{
-  display: inline-block;
-}
 
 .navbar-nav{
   margin: 0;
   float: right;
+}
+*/
+
+.navbar-brand{
+  padding: 9px;
+}
+.navbar-brand>img{
+  display: inline-block;
+  width:  32px;
+  height: 32px;
 }
 
 .profile-picture{

@@ -11,7 +11,7 @@ function getAccountBalance(userId, success, error){
     success: function(results) {
       var balance = 0;
       for (var i = 0; i < results.length; ++i) {
-        balance += results[i].get("amount");
+        balance += results[i].get("amount") || 0;
       }
 
       success(balance);
@@ -39,7 +39,8 @@ Parse.Cloud.define("getAllAccount", function(request, response) {
 
         users.push({
           id: u.id,
-          fbid: u.get('authData').facebook.id
+          fbid: u.get('authData').facebook.id,
+          name: u.get('name')
         });
       }
 
