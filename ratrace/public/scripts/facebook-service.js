@@ -15,7 +15,7 @@ void function(ng, $, Parse, app){
         } else if (response.status === 'not_authorized') {
           deferred.reject(response.status);
         } else {
-          deferred.reject(response.status);
+          deferred.reject("new_user");
         }
       }
 

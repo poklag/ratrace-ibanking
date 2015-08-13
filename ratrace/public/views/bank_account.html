@@ -7,7 +7,7 @@
 
   <form class="form">
 
-    <fieldset ng-disabled="loading()">
+    <fieldset ng-disabled="loginState != 'connected' || loading()">
       <!-- <legend>Payment</legend> -->
 
       <div class="form-group">

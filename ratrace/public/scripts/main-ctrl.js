@@ -43,7 +43,12 @@ void function(ng, $, Parse, app){
           scope.fbid = response.authResponse.userID;
         })
         .catch(function(reason){
-          scope.loginState = reason;
+
+          if(reason == 'new_user'){
+            scope.login();
+          }else{
+            scope.loginState = reason;
+          }
         });
 
       scope.logout = function(){
