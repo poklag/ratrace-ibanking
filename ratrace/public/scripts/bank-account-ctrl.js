@@ -71,11 +71,11 @@ void function(ng, $, Parse, app){
         })
         .catch(function(err){
 
-          // if(err.message){
-          //   alert(err.message);
-          // }else{
-          //   alert(err);
-          // }
+          if(err.message){
+            alert(err.message);
+          }else{
+            alert(err);
+          }
 
           console.log('Payment error');
         }).finally(function(){

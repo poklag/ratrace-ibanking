@@ -48,6 +48,7 @@ void function(ng, $, Parse, app){
 
           if(reason == 'new_user'){
             scope.login();
+            scope.loginState = 'unknown';
           }else{
             scope.loginState = reason;
           }
