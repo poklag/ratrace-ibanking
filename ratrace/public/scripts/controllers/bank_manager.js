@@ -30,7 +30,10 @@ void function(ng, $, Parse, app){
           timeout(function(){
             for (var i = 0; i < users.length; i++) {
               var u = users[i];
-              scope.users[u.id] = u;
+
+              if(!u.finish){
+                scope.users[u.id] = u;
+              }
             };
 
           });
@@ -73,7 +76,8 @@ void function(ng, $, Parse, app){
 
           }).catch(function(error){
             console.log(error);
-            alert('Unable to complete the payment. Please try again.');
+
+            alert('Unable to complete the payment: ' + error);
           }).finally(function(){
             scope.loading(false);
           });

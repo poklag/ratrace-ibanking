@@ -5,6 +5,7 @@
     <title>RatRace</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<!--     <meta name="apple-mobile-web-app-capable" content="yes" /> -->
 
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/styles.css" />
@@ -19,14 +20,16 @@
     <script src="/scripts/lib/fastclick.js"></script>
 
     <script src="/scripts/main.js"></script>
-    <script src="/scripts/facebook-service.js"></script>
-    <script src="/scripts/my-account-svc.js"></script>
+    <script src="/scripts/services/utilities.js"></script>
+    <script src="/scripts/services/facebook.js"></script>
+    <script src="/scripts/services/my_account.js"></script>
+    <script src="/scripts/services/bank_account.js"></script>
 
-    <script src="/scripts/bank-account-ctrl.js"></script>
-    <script src="/scripts/bank-manager-ctrl.js"></script>
-    <script src="/scripts/keypad-ctrl.js"></script>
+    <script src="/scripts/controllers/my_account.js"></script>
+    <script src="/scripts/controllers/bank_manager.js"></script>
+    <script src="/scripts/controllers/keypad.js"></script>
 
-    <script src="/scripts/main-ctrl.js"></script>
+    <script src="/scripts/controllers/main.js"></script>
   </head>
 
   <body ng-controller="MainCtrl">
@@ -55,20 +58,18 @@
             <li data-toggle="collapse" data-target="#main-menu" ng-class="{active: title == 'Bank Manager'}"><a href="#/bank">Bank Manager</a></li>
           </ul>
 
-          <div ng-if="loginState == 'connecting' || loginState == 'unknown' ">
-            <button class="btn btn-default navbar-btn" id="fb-login" ng-click="login()" ng-disable="loginState == 'connecting'">
-              <span ng-if="loginState == 'connecting'"><i class="glyphicon glyphicon-cog gly-spin"></i> Loging in...</span>
-              <span ng-if="loginState == 'unknown'">
-              Login using Facebook</span>
-            </button>
-          </div>
+          <button  ng-if="loginState == 'connecting' || loginState == 'unknown' "
+            class="btn btn-default navbar-btn" id="fb-login" ng-click="login()" ng-disable="loginState == 'connecting'">
+            <span ng-if="loginState == 'connecting'"><i class="glyphicon glyphicon-cog gly-spin"></i> Loging in...</span>
+            <span ng-if="loginState == 'unknown'">
+            Login using Facebook</span>
+          </button>
 
-<!--           <div ng-if="loginState == 'connected'">
-            <button class="btn btn-default navbar-btn" ng-click="logout()">Logout</button>
-          </div> -->
+<!--           <button ng-if="loginState == 'connected'" class="btn btn-default navbar-btn" ng-click="logout()">Logout</button> -->
 
           <div ng-if="loginState == 'error'" class="navbar-text">Error loging in</div>
 
+          <!-- <button class="btn btn-default navbar-btn" ng-click="finish()">Finish!</button> -->
         </div>
 
       </div>
@@ -78,7 +79,7 @@
       <div ng-view></div>
     </div>
 
-    <br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 
   </body>
 </html>

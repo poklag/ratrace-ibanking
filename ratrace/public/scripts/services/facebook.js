@@ -13,7 +13,7 @@ void function(ng, $, Parse, app){
         if (response.status === 'connected') {
           deferred.resolve(response);
         } else if (response.status === 'not_authorized') {
-          deferred.reject(response.status);
+          deferred.reject("new_user");
         } else {
           deferred.reject("new_user");
         }

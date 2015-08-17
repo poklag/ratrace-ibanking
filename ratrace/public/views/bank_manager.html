@@ -15,7 +15,7 @@
     </ul>
 
     <div class="modal fade" id="selectPlayerModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle">
-      <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -24,21 +24,25 @@
             <h4 class="modal-title" id="modalTitle">Select player to transfer to</h4>
           </div>
           <div class="modal-body">
-            <ul class="nav nav-tabs user-list">
-              <li role="presentation" ng-repeat="user in users" class="user"
+            <div class="row user-list-modal">
+              <div ng-repeat="user in users" class="user col-xs-12 col-sm-4 col-md-3 col-lg-3"
                 ng-class="{active : user == selectedUser }">
 
-                <a href="javascript: void(0)" ng-click="setSelectedUser(user.id)">
-                  <img ng-src="//graph.facebook.com/{{ user.fbid }}/picture?width=64&height=64" class="img-round" />
-                  <span class="small">{{ user.name }}</span>
-                </a>
+                <button ng-click="setSelectedUser(user.id)" class="btn btn-default btn-block btn-lg clearfix">
+                  <img ng-src="//graph.facebook.com/{{ user.fbid }}/picture?width=72&height=72" class="img-round" />
+                  <span class="small user-name">{{ user.name }}</span>
+                </button>
 
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
+
           <div class="modal-footer">
-            <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click="payTo(selectedUser, currentPayment)">Transfer</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="button" ng-disabled="currentPayment == 0" class="btn btn-warning btn-lg" data-dismiss="modal" ng-click="payTo(selectedUser, currentPayment)">
+              <i class="glyphicon glyphicon-transfer"></i>
+              Transfer
+            </button>
+            <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Cancel</button>
           </div>
         </div>
       </div>
@@ -52,7 +56,7 @@
 
     <fieldset ng-disabled="loading()">
 
-      <div class="form-group">
+      <div class="form-group margin-five">
         <div class="input-group">
 
           <div class="input-group-addon">$</div>
@@ -75,8 +79,8 @@
       </div>
 
       <div class="form-group">
-        <button type="button" ng-click="payTo(selectedUser, currentPayment)" class="btn btn-lg btn-warning btn-block">
-          <i class="glyphicon glyphicon-cog gly-spin" ng-show="loading()"></i>
+        <button type="button" ng-disabled="currentPayment == 0" ng-click="payTo(selectedUser, currentPayment)" class="btn btn-lg btn-warning btn-block btn-transfer">
+          <i class="glyphicon glyphicon-transfer" ng-class="{'gly-spin': loading()}"></i>
           Transfer
         </button>
       </div>

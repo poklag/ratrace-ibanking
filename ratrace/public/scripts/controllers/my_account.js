@@ -1,29 +1,29 @@
 void function(ng, $, Parse, app){
   
-  app.controller('BankAccountCtrl', [
+  app.controller('MyAccountCtrl', [
     '$scope',
     '$timeout',
     '$rootScope',
     'MyAccountService',
 
-    function BankAccountCtrl(scope, timeout, rootScope, myAccountService){
+    function MyAccountCtrl(scope, timeout, rootScope, myAccountService){
       rootScope.setTitle('My Account');
 
       var chaChingSound = Audio? new Audio('/184438_850742-lq.mp3'): null;
       var isFirstPlay = true;
-
-      function playSound(){
-        if(chaChingSound){
-          chaChingSound.play();
-        }
-      };
-
       scope.myAccount = {
         balance: '',
         previousBalance: '-'
       };
 
       scope.currentPayment = 0;
+
+
+      function playSound(){
+        if(chaChingSound){
+          chaChingSound.play();
+        }
+      };
 
       scope.setCurrentPayment = function(value){
         scope.currentPayment = value;
@@ -41,6 +41,15 @@ void function(ng, $, Parse, app){
             scope.currentPayment = parseInt(val);
           }
         }
+      };
+
+      scope.finish = function(){
+        myAccountService.finish(true)
+        .then(function(){
+          alert('Yeah!');
+        }).catch(function(){
+          alert("Error!");
+        });
       };
 
       scope.pay = function(){
@@ -72,8 +81,10 @@ void function(ng, $, Parse, app){
         .catch(function(err){
 
           if(err.message){
-            alert(err.message);
-          }else{
+            err = err.message;
+          }
+
+          if(err != 'Amount must be non-zero'){
             alert(err);
           }
 
@@ -118,9 +129,17 @@ void function(ng, $, Parse, app){
         });
       };
 
-      scope.updateAccountBalance();
+      // if(scope.loginState == 'connected'){
+      //   scope.updateAccountBalance();
+      // }
 
-    } // end BankAccountCtrl
+      scope.$watch('loginState', function(loginState){
+        if(scope.loginState == 'connected'){
+          scope.updateAccountBalance();
+        }
+      });
+
+    } // end MyAccountCtrl
   ]);
 
 }(angular, jQuery, Parse, app);

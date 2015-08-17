@@ -40,7 +40,8 @@ Parse.Cloud.define("getAllAccount", function(request, response) {
         users.push({
           id: u.id,
           fbid: u.get('authData').facebook.id,
-          name: u.get('name')
+          name: u.get('name'),
+          finish: u.get('finish') || false,
         });
       }
 

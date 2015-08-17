@@ -33,14 +33,18 @@
 
 .navbar{
   border-radius: 0;
-/*  margin-bottom: 5px;*/
+  margin-bottom: 10px;
 }
+
+
+.margin-five{
+  margin-bottom: 5px;
+}
+
 /*
 .navbar-header{
   float: left;
 }
-
-
 
 .navbar-nav{
   margin: 0;
@@ -62,7 +66,7 @@
 }
 
 .account-balance{
-  font-size: 36px;
+  font-size: 30px;
 }
 
 .keypad .row .cell:first-child{
@@ -114,19 +118,54 @@
   border-bottom: 1px solid #337AB7;
 }
 
-.user-list.nav-tabs>li.active>a{
-  padding: 6px;
+.user-list.nav-tabs>li.active>a,
+.user-list-modal .user.active button{
   color: #FFF;
   background-color: #337AB7;
   border-color: #337AB7;
 
   background-image: radial-gradient(ellipse farthest-corner at center bottom, #337AB7 30%, #5EC9FF 200%);
+}
 
+.user-list-modal{
+  margin: 0;
+}
+.user-list-modal .user{
+  padding: 6px;
+}
+.user-list-modal .user button{
+  text-align: left;
+  white-space: normal;
+  padding: 6px;
+  outline: none;
+}
+
+.user-list-modal .user .img-round{
+  float: left;
+  margin-right: 6px;
+}
+
+.user-list-modal .user.active .user-name{
+  color: white;
+}
+
+.user-list-modal .user .user-name{
+  /*float: left;*/
+  font-size: 100%;
 }
 
 .input-group-btn.btn-backspace{
   padding: 0;
   font-size: 100%;
+}
+
+.btn-transfer{
+  font-size: 200%;
+  vertical-align: middle;
+}
+
+.btn-transfer i{
+  vertical-align: middle;
 }
 
 @media (min-width: 768px){
@@ -150,5 +189,16 @@
 
   .user-list.nav-tabs>li>a{
     border-radius: 4px;
+  }
+
+  .keypad .btn-lg,
+  .btn-transfer{
+    font-size: 250%;
+  }
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+  .modal-dialog {
+    width: 700px; 
   }
 }

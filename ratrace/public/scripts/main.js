@@ -12,7 +12,7 @@ void function(ng, $, Parse, window){
       routeProvider
         .when('/', {
           templateUrl: '/views/bank_account.html',
-          controller: 'BankAccountCtrl'
+          controller: 'MyAccountCtrl'
         })
         .when('/bank', {
           templateUrl: '/views/bank_manager.html',

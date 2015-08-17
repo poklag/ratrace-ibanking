@@ -32,8 +32,8 @@
         <keypad ng-model="currentPayment"></keypad>
       </div>
 
-      <button type="button" ng-click="pay()" class="btn btn-lg btn-warning btn-block">
-        <i class="glyphicon glyphicon-cog gly-spin" ng-show="loading()"></i>
+      <button type="button" ng-click="pay()" class="btn btn-lg btn-warning btn-block btn-transfer">
+        <i class="glyphicon glyphicon-transfer" ng-class="{ 'gly-spin': loading() }"></i>
         Pay
       </button>
 

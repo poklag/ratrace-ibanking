@@ -47,9 +47,19 @@ void function(ng, $, Parse, app){
         .catch(function(reason){
 
           if(reason == 'new_user'){
-            scope.login();
-            scope.loginState = 'unknown';
-          }else{
+
+            if(Parse.User.current()){
+              Parse.User.logOut()
+                .always(function(){
+                  timeout(function(){
+                    scope.login();
+                    scope.loginState = 'unknown';
+                  });
+
+                });
+            }
+          }
+          else{
             scope.loginState = reason;
           }
         });
