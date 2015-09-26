@@ -13,6 +13,7 @@ void function(ng){
       scope.modalOpen = false;
       scope.users = meteor.collection(Meteor.users);
       scope.setTitle("Bank");
+      scope.loading = false;
 
       scope.setSelectedUserId = function(userId){
         scope.selectedUserId = userId;
@@ -35,6 +36,9 @@ void function(ng){
       scope.transferTo = function(userId, amount){
 
         if(userId){
+
+          scope.loading = true;
+
           Meteor.call('transfer', {
             to: userId,
             amount: +amount
@@ -43,7 +47,8 @@ void function(ng){
             timeout(function(){
               scope.currentPayment = 0;
               scope.selectedUserId = null;
-            });
+              scope.loading = false;
+            }, 5000);
 
             rootScope.playSound();
           });

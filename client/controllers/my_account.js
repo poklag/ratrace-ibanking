@@ -16,9 +16,9 @@ angular.module('MollyApp')
     scope.selectedUserId = null;
     scope.modalOpen = false;
     scope.setTitle("My Account");
+    scope.loading = false;
 
     scope.previousBalance = function(value){
-      console.log(value);
       Session.set('previousBalance', value);
     };
 
@@ -49,13 +49,20 @@ angular.module('MollyApp')
     scope.pay = function(event){
 
       if(scope.currentPayment <= scope.getAccountBalance()){
+
+        scope.loading = true;
+
         Meteor.call('transfer', {
           from: Meteor.userId(),
           amount: +scope.currentPayment
+        }, function(){
+            timeout(function(){
+              scope.currentPayment = 0;
+              scope.selectedUserId = null;
+              scope.loading = false;
+            }, 5000);
         });
 
-        scope.currentPayment = 0;
-        scope.selectedUserId = null;
       }else{
         window.alert('Not enought money to make payment');
       }
@@ -66,15 +73,18 @@ angular.module('MollyApp')
       if(scope.currentPayment <= scope.getAccountBalance()){
 
         if(userId){
+
+          scope.loading = true;
           Meteor.call('transfer', {
             from: Meteor.userId(),
             to: userId,
             amount: +amount
-          });
-
-          timeout(function(){
-            scope.currentPayment = 0;
-            scope.selectedUserId = null;
+          }, function(){
+            timeout(function(){
+              scope.currentPayment = 0;
+              scope.selectedUserId = null;
+              scope.loading = false;
+            }, 5000);
           });
           
           scope.modalOpen = false;

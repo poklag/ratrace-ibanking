@@ -7,34 +7,31 @@
           <img ng-if="currentUser.services.facebook" class="profile-picture" ng-src="//graph.facebook.com/{{ currentUser.services.facebook.id }}/picture?width=64&height=64" />
 
           <img ng-if="!currentUser.services.facebook" class="profile-picture" ng-src="//graph.facebook.com/2/picture?width=64&height=64" />
-
-          <div class="inline-block" ng-if="!currentUser">
-            <blaze-template name="loginButtons"></blaze-template>
-          </div>
-
           <span class="hidden-xs" ng-if="currentUser">{{ currentUser.profile.name }}</span>
         </a>
       </li>
-      <li role="presentation" ng-class="{active: title == 'Bank'}">
-        <a href="/bank">
-          <i class="glyphicon lg glyphicon-usd"></i>
-          <span class="hidden-xs">Bank</span>
+
+      <li role="presentation" ng-class="{active: title == 'Transactions'}">
+        <a href="/transactions">
+          <i class="fa fa-list-alt fa-lg"></i>
+          <span class="hidden-xs">Transactions</span>
         </a>
       </li>
 
+
       <li role="presentation" class="dropdown pull-right">
         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-          <i class="glyphicon glyphicon-cog lg"></i>
+          <i class="fa fa-cog fa-lg"></i>
           <span class="hidden-xs">Settings</span>
           <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
 
-          <li role="presentation">
+<!--           <li role="presentation">
             <a href="#" ng-click="leaveGame()">
               <span>Leave game</span>
             </a>
-          </li>
+          </li> -->
 
           <li role="presentation">
             <a href="#" ng-click="reset()">
@@ -47,6 +44,13 @@
             </a>
           </li>
         </ul>
+      </li>
+
+      <li role="presentation" class="pull-right" ng-class="{active: title == 'Bank'}">
+        <a href="/bank">
+          <i class="fa fa-university fa-lg"></i>
+          <span class="hidden-xs">Bank</span>
+        </a>
       </li>
     </ul>
 

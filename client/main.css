@@ -61,6 +61,9 @@ div.btn{
 .nav-tabs>li>a{
   padding: 7px 10px;
   line-height: 33px;
+  margin-right: 2px;
+  border: 1px solid transparent;
+  border-radius: 4px 4px 0 0;
 }
 
 .nav-tabs>li>a>*{
@@ -81,8 +84,8 @@ div.btn{
 .profile-picture{
 /*  margin-right: 6px;*/
   display: inline-block;
-  width:  32px;
-  height: 32px;
+  width:  auto;
+  height: 33px;
 }
 
 .inline-block{
@@ -187,7 +190,12 @@ div.btn{
   padding: 0;
   font-size: 100%;
 }
-
+#login-dropdown-list {
+    position: relative;
+    top: -1px;
+    left: -1px;
+    height: 270px;
+}
 .btn-transfer{
   font-size: 200%;
   vertical-align: middle;
@@ -195,6 +203,24 @@ div.btn{
 
 .btn-transfer i{
   vertical-align: middle;
+}
+
+.v-middle{
+  vertical-align: middle;
+}
+
+.table > tbody > tr > td{
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+}
+
+.tr-date{
+  width: 40px;
+}
+
+.tr-action-group{
+  display: inline-block;
+  white-space: nowrap;
 }
 
 @media (min-width: 768px){

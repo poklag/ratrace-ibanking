@@ -3,9 +3,10 @@ angular.module('MollyApp').controller('MainCtrl', [
   '$window',
   '$meteor',
   '$timeout',
+  '$location',
   '$rootScope',
 
-  function MainCtrl(scope, window, meteor, timeout, rootScope){
+  function MainCtrl(scope, window, meteor, timeout, location, rootScope){
 
     var chaChingSound = angular.element('#chaChingSound').get(0);
 
@@ -14,6 +15,10 @@ angular.module('MollyApp').controller('MainCtrl', [
 
     scope.setTitle = function(title){
       scope.title = title;
+    };
+
+    scope.go = function(path){
+      location.path(path);
     };
 
     scope.reset = function(){

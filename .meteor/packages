@@ -9,11 +9,11 @@ angular
 angular:angular-animate
 angular:angular-route
 
-percolate:migrations
+#percolate:migrations
 
 twbs:bootstrap
 
+accounts-ui
 urigo:angular-blaze-template
 accounts-facebook
-accounts-ui
 accounts-password

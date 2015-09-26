@@ -17,6 +17,10 @@ angular.module('MollyApp')
           templateUrl: 'client/views/bank_manager.ng.html',
           controller: 'BankManagerCtrl'
         })
+        .when('/transactions', {
+          templateUrl: 'client/views/transactions.ng.html',
+          controller: 'TransactionsCtrl'
+        })
         .when('/manage/cards', {
           templateUrl: 'client/views/cards/index.ng.html',
           controller: 'CardIndexCtrl'

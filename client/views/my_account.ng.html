@@ -1,4 +1,12 @@
-<div class="">
+<div ng-if="!currentUser" class="container-fluid">
+  <div class="signin-panel text-center">
+
+    <br /><br />
+    <blaze-template name="loginButtons"></blaze-template>
+  </div>
+</div>
+
+<div ng-hide="!currentUser">
 
   <select-player-modal selected-user-id="selectedUserId" open="modalOpen" on-select="transferTo(selectedUserId, currentPayment)"></select-player-modal>
 
@@ -9,7 +17,7 @@
 
   <form class="form">
 
-    <fieldset ng-disabled="!currentUser">
+    <fieldset ng-disabled="!currentUser || loading">
 
       <div class="form-group">
         <div class="input-group display">
@@ -22,7 +30,7 @@
 
           <div class="input-group-btn btn-backspace">
             <div class="btn btn-lg btn-danger" ng-click="backspace()">
-              <i class="glyphicon glyphicon-arrow-left"></i>
+              <i class="fa fa-chevron-left fa-lg"></i>
             </div>
           </div>
 

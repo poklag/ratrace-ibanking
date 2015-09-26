@@ -1,0 +1,30 @@
+<div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Time</th>
+        <th class="text-right">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="tr in (ordered = (transactions | orderBy: '-refId'))" ng-class="{ success: tr.amount > 0, danger: tr.amount < 0 }" ng-click="select(tr)">
+        <td class="tr-date">
+          <span ng-if="date(tr) != date(ordered[$index -1])">{{ date(tr) }}</span>
+        </td>
+        <td class="tr-time">
+          {{ time(tr) }}
+        </td>
+        <td class="text-right">
+          <strong>{{ tr.amount | currency: '': 0 }}</strong>
+
+          <div class="tr-action-group">
+            <button ng-if="selectedTR.refId == tr.refId" class="btn btn-xs btn-danger" ng-click="delete(tr); $event.stopPropagation();">Delete</button>
+            <button ng-if="selectedTR.refId == tr.refId" class="btn btn-xs btn-default" ng-click="select(null); $event.stopPropagation();">Cancel</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
