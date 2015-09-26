@@ -1,0 +1,57 @@
+<div class="">
+
+  <select-player-modal selected-user-id="selectedUserId" open="modalOpen" on-select="transferTo(selectedUserId, currentPayment)"></select-player-modal>
+
+  <p class="text-center hidden-xs"><small>Account balance</small></p>
+  <div class="account-balance text-center">
+    {{ getAccountBalance() | currency:'':0 }}
+  </div>
+
+  <form class="form">
+
+    <fieldset ng-disabled="!currentUser">
+
+      <div class="form-group">
+        <div class="input-group display">
+
+          <div class="input-group-addon">$</div>
+
+          <label class="form-control input-lg text-right">
+            {{ currentPayment | currency: '': 0 }}
+          </label>
+
+          <div class="input-group-btn btn-backspace">
+            <div class="btn btn-lg btn-danger" ng-click="backspace()">
+              <i class="glyphicon glyphicon-arrow-left"></i>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="form-group">
+        <keypad ng-model="currentPayment"></keypad>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-5 no-right-padding">
+          <button type="button" ng-disabled="currentPayment == 0" class="btn btn-lg btn-primary btn-block btn-transfer" ng-click="transferTo()">
+            <small>Transfer</small>
+          </button>
+        </div>
+        <div class="col-xs-7">
+          <button type="button" class="btn btn-lg btn-warning btn-block btn-transfer" ng-click="pay($event)">
+            <i class="glyphicon glyphicon-check"></i>
+            Pay
+          </button>
+        </div>
+      </div>
+
+
+    </fieldset>
+
+    <br /><br />
+
+  </form>
+
+</div>

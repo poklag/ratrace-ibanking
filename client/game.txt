@@ -1,0 +1,27 @@
+Template.game.events({
+  "click .action--delete-game": function(e){
+    Games.remove(this._id);
+  },
+
+  "click .toggle_selected_game": function(e){
+    Games.update(this._id, {
+      $set: { selected: !this.selected }
+    })
+  }
+});
+
+Template.create_game.events({
+  "submit form.create_game": function (e) {
+    e.preventDefault();
+
+    var name = e.target.name.value;
+
+    Games.insert({
+      name: name,
+      createdAt: new Date(),
+      isActive: true
+    });
+
+    e.target.name.value = "";
+  }
+});

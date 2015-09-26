@@ -1,0 +1,74 @@
+<nav class="navbar navbar-default">
+  <div class="container">
+
+    <ul class="nav nav-tabs">
+      <li role="presentation" ng-class="{active: title == 'My Account'}">
+        <a href="/">
+          <img ng-if="currentUser.services.facebook" class="profile-picture" ng-src="//graph.facebook.com/{{ currentUser.services.facebook.id }}/picture?width=64&height=64" />
+
+          <img ng-if="!currentUser.services.facebook" class="profile-picture" ng-src="//graph.facebook.com/2/picture?width=64&height=64" />
+
+          <div class="inline-block" ng-if="!currentUser">
+            <blaze-template name="loginButtons"></blaze-template>
+          </div>
+
+          <span class="hidden-xs" ng-if="currentUser">{{ currentUser.profile.name }}</span>
+        </a>
+      </li>
+      <li role="presentation" ng-class="{active: title == 'Bank'}">
+        <a href="/bank">
+          <i class="glyphicon lg glyphicon-usd"></i>
+          <span class="hidden-xs">Bank</span>
+        </a>
+      </li>
+
+      <li role="presentation" class="dropdown pull-right">
+        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          <i class="glyphicon glyphicon-cog lg"></i>
+          <span class="hidden-xs">Settings</span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+
+          <li role="presentation">
+            <a href="#" ng-click="leaveGame()">
+              <span>Leave game</span>
+            </a>
+          </li>
+
+          <li role="presentation">
+            <a href="#" ng-click="reset()">
+              <span>Reset game</span>
+            </a>
+          </li>
+          <li role="presentation">
+            <a href="#" ng-click="logout()">
+              <span>Sign out</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+<!--     <ul class="nav navbar-nav navbar-right">
+      <li ng-class="{active: title == 'My Account'}"><a href="/">My Account</a></li>
+      <li ng-class="{active: title == 'Bank'}"><a href="/bank">Bank</a></li>
+    </ul> -->
+
+<!-- 
+    <div class="collapse navbar-collapse" id="main-menu">
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <li data-toggle="collapse" data-target="#main-menu" class="">
+          <span>Reset game</span>
+        </li>
+        <li>
+          <meteor-include src="loginButtons"></meteor-include>
+        </li>
+      </ul>
+
+    </div> -->
+
+  </div>
+</nav>

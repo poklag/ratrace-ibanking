@@ -1,0 +1,1 @@
+meteor run -p 80

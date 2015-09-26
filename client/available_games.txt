@@ -1,0 +1,5 @@
+Template.available_games.helpers({
+  games: function(){
+    return Games.find({ isActive: true }, {sort: {createdAt: 1}});
+  }
+});

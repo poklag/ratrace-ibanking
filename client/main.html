@@ -1,0 +1,20 @@
+<head>
+  <meta charset="utf-8" />
+  <title>Molly</title>
+  <base href="/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="/fastclick.js" type="text/javascript"></script>
+  
+</head>
+
+<body ng-app="MollyApp" ng-controller="MainCtrl">
+  <audio id="chaChingSound" src="/cha-ching.mp3"></audio>
+
+  <div ng-include="'client/templates/main_navbar.ng.html'"></div>
+
+  <div class="container">
+    <div ng-view></div>
+  </div>
+</body>

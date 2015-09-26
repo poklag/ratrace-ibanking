@@ -1,0 +1,64 @@
+<div class="row">
+
+  <select-player-modal selected-user-id="selectedUserId" open="modalOpen" on-select="transferTo(selectedUserId, currentPayment)"></select-player-modal>
+
+  <div class="col-md-3 hidden-sm hidden-xs">
+
+    <ul class="nav nav-tabs user-list">
+      <li role="presentation" ng-repeat="user in users" class="user"
+        ng-class="{active : user._id == selectedUserId }">
+
+        <a href="javascript: void(0);" ng-click="setSelectedUserId(user._id)" class="btn-select-user">
+
+          <img ng-if="!user.services.facebook" ng-src="//graph.facebook.com/2/picture?width=64&height=64" class="img-round" />
+
+          <img ng-if="user.services.facebook" ng-src="//graph.facebook.com/{{ user.services.facebook.id }}/picture?width=64&height=64" class="img-round" />
+          <span class="small hidden-xs">{{ (user.profile && user.profile.name) || user.emails[0].address }}</span>
+        </a>
+
+      </li>
+    </ul>
+
+  </div>
+
+  <div class="col-sm-12 col-md-9">
+
+    <form class="form">
+
+      <fieldset>
+
+        <div class="form-group margin-five">
+          <div class="input-group">
+
+            <div class="input-group-addon">$</div>
+
+            <label class="form-control input-lg text-right">
+              {{ currentPayment | currency: '': 0 }}
+            </label>
+
+            <div class="input-group-btn btn-backspace">
+              <div class="btn btn-lg btn-danger" ng-click="backspace()">
+                <i class="glyphicon glyphicon-arrow-left"></i>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <keypad ng-model="currentPayment"></keypad>
+        </div>
+
+        <div class="form-group">
+          <button type="button" ng-disabled="currentPayment == 0" ng-click="transferTo(selectedUserId, currentPayment);" class="btn btn-lg btn-warning btn-block btn-transfer">
+            <i class="glyphicon glyphicon-transfer"></i>
+            Transfer
+          </button>
+        </div>
+
+      </fieldset>
+
+    </form>
+  </div>
+
+</div>

@@ -1,0 +1,103 @@
+var cards = {
+  'q4234kjio': {
+    type: 'market',
+    name: 'Apartment House Buyer',
+    description: 'Buyer offers %{offer.price} per unit on all units in apartment houses. Has own financing, needs to invest now.',
+    description_2: "",
+    offer: {
+      type: 'sell',
+      can_sell: 'all',
+      can_buy: '',
+      preconditions: ['4-plx', '8-plx'],
+      price: 40000,
+      actions: [
+        function sell_assets(account, selected_assets){
+          var card = this;
+          selected_assets.map(function(a){
+            
+            var holding = account.assets[a.id];
+
+            if(holding.status != 'sold'){
+              var gt = holding.unit * card.offer.price;
+              var profit = gt - holding.mortgage;
+
+              holding.status = 'sold';
+
+              transfer({
+                to: account._id,
+                amount: profit,
+                note: "%{"+card.offer.type+"} "+ a.name +" (%{"+ a.subtype +"})"
+              });
+            }
+
+          });
+        }
+      ]
+    }
+  },
+
+  '3ddrfea': {
+    type: 'small-deal',
+    subtype: 'stock',
+    symbol: 'OK4U',
+    name: 'OK4U Drug Co.',
+    description: 'Booming market raises share price of this long time maker of madicines',
+    description_2: "",
+    price_range: {
+      min: 5, max: 40
+    },
+    dividend: 0,
+    offer_sell: {
+      for: 'all',
+      force: false,
+      price: 50,
+      actions: [
+        function sell_stock(account, selected_holdings){
+          var card = this;
+
+          selected_holdings.each(function(h){
+            var holding = account.stocks[h.id];
+
+            if(holding.is_holding){
+              var profit = holding.unit * card.offer_sell.price;
+              holding.is_holding = false;
+
+              transfer({
+                to: account._id,
+                amount: profit,
+                note: "%{sell}%{"+ card.subtype +"} "+ card.name +" "+ holding.shares + " %{stock_unit}"
+              });
+            }
+          });
+        }
+      ]
+    },
+    offer_buy: {
+      for: 'picker_only',
+      force: false,
+      preconditions: [],
+      price: 50,
+      actions: [
+        function buy_stock(account, shares){
+          var card = this;
+          var holding = {
+            id: newid(),
+            is_holding: true,
+            symbol: card.symbol,
+            shares: shares,
+            pershare: card.offer_buy.price
+          };
+
+          account.stocks[holding.id] = holding;
+
+          transfer({
+            from: account._id,
+            amount: profit,
+            note: "%{buy}%{"+ card.subtype +"} "+ card.symbol +" "+ holding.shares + " %{stock_unit}"
+          });
+        }
+      ]
+    }
+  }
+
+}

@@ -1,0 +1,29 @@
+<button class="btn btn-primary" ng-click="newCard()">Create new card</button>
+
+<hr />
+
+<div ng-include="'client/views/cards/_form.ng.html'"></div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Subtype</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody class="table-striped">
+    <tr ng-repeat="card in cards">
+      <td>&nbsp;</td>
+      <td>{{ card.name }}</td>
+      <td>{{ card.type }}</td>
+      <td>{{ card.subtype }}</td>
+      <td>
+        <button class="btn btn-warning" ng-click="editCard(card)">Edit</button>
+        <button class="btn btn-danger" ng-click="confirm() && deleteCard(card.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
