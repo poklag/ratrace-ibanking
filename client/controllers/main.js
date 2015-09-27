@@ -55,7 +55,7 @@ angular.module('MollyApp').controller('MainCtrl', [
       angular.element('body').one('touchstart', function(){
         rootScope.playSound();
         setTimeout(function(){
-          chaChingSound.stop();
+          chaChingSound.pause();
         }, 1);
       });
     }
