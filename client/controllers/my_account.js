@@ -60,7 +60,7 @@ angular.module('MollyApp')
               scope.currentPayment = 0;
               scope.selectedUserId = null;
               scope.loading = false;
-            }, 5000);
+            });
         });
 
       }else{
@@ -84,7 +84,7 @@ angular.module('MollyApp')
               scope.currentPayment = 0;
               scope.selectedUserId = null;
               scope.loading = false;
-            }, 5000);
+            });
           });
           
           scope.modalOpen = false;

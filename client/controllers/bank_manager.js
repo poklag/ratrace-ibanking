@@ -48,7 +48,7 @@ void function(ng){
               scope.currentPayment = 0;
               scope.selectedUserId = null;
               scope.loading = false;
-            }, 5000);
+            });
 
             rootScope.playSound();
           });
