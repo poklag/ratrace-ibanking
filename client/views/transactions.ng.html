@@ -20,7 +20,7 @@
           <strong>{{ tr.amount | currency: '': 0 }}</strong>
 
           <div class="tr-action-group">
-            <button ng-if="selectedTR.refId == tr.refId" class="btn btn-xs btn-danger" ng-click="delete(tr); $event.stopPropagation();">Delete</button>
+            <button ng-if="selectedTR.refId == tr.refId" class="btn btn-xs btn-danger" ng-click="delete(tr.refId); $event.stopPropagation();">Delete</button>
             <button ng-if="selectedTR.refId == tr.refId" class="btn btn-xs btn-default" ng-click="select(null); $event.stopPropagation();">Cancel</button>
           </div>
         </td>

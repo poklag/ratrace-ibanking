@@ -25,6 +25,15 @@ Meteor.publish('Cards', function(){
 });
 
 Meteor.methods({
+  "transactions.delete": function(refId){
+
+    if(refId){
+      TransferItems.remove({
+        refId: refId
+      });
+    }
+
+  },
   "cards.create": function(card){
     Cards.insert(card);
   },

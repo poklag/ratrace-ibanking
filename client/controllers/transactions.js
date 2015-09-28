@@ -19,8 +19,8 @@
       scope.selectedTR = tr;
     };
 
-    scope.delete = function(tr){
-      scope.transactions.remove(tr);
+    scope.delete = function(refId){
+      meteor.call('transactions.delete', refId);
     };
 
     scope.date = function(tr){
