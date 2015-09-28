@@ -16,4 +16,4 @@ twbs:bootstrap
 accounts-ui
 urigo:angular-blaze-template
 accounts-facebook
-accounts-password
+#accounts-password
